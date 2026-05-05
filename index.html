@@ -1,95 +1,109 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" id="top">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Martí Duran — Portfolio</title>
-    <meta name="description" content="Portfolio of Martí Duran. Projects, experience, and contact." />
+    <title>Martí Duran — Technical Artist • 3D Artist • Animator</title>
+    <meta name="description" content="Portfolio of Martí Duran — Technical Artist, 3D Artist and Animator." />
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
   </head>
-  <body>
-    <header class="container header">
-      <a class="logo" href="#">Martí Duran</a>
 
-      <nav class="nav">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+  <body>
+    <div class="site-header">
+      <header class="container header">
+        <a class="logo" href="index.html" aria-label="Go to homepage">Home</a>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="about.html">About Me</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
+      </header>
+
+      <div class="mobile-menu" hidden>
+        <nav class="mobile-nav" aria-label="Mobile navigation">
+          <a href="about.html">About Me</a>
+          <a href="projects.html">Projects</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
 
     <main>
       <section class="container hero">
-        <p class="kicker">Software Developer</p>
-        <h1>Building clean, fast web experiences.</h1>
+        <p class="muted">Technical Artist • 3D Artist • Animator</p>
+        <h1>Martí Duran Cuenca</h1>
         <p class="lead">
-          I’m Martí. I build web apps and tools. Here are a few projects and how to reach me.
+          I’m Martí Duran. I build art and tech that meet in the middle:
+          real-time pipelines, shaders, rigs, animation, and production-ready assets.
         </p>
 
-        <div class="cta">
-          <a class="button" href="#projects">See projects</a>
-          <a class="button ghost" href="#contact">Contact</a>
+        <div class="hero-meta">
+          <div class="pill">Realtime • Unreal / Unity</div>
+          <div class="pill">3D • Modeling / Texturing</div>
+          <div class="pill">Animation • Rigging / Motion</div>
+          <div class="pill">Pipeline • Tools / Python</div>
         </div>
       </section>
 
-      <section id="projects" class="container section">
-        <h2>Projects</h2>
-
-        <div class="grid">
-          <article class="card">
-            <h3>Project One</h3>
-            <p>What it does, your role, and the outcome in 1–2 lines.</p>
-            <div class="links">
-              <a href="#" target="_blank" rel="noreferrer">Live</a>
-              <a href="#" target="_blank" rel="noreferrer">Code</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Project Two</h3>
-            <p>Short description. Keep it focused on impact.</p>
-            <div class="links">
-              <a href="#" target="_blank" rel="noreferrer">Live</a>
-              <a href="#" target="_blank" rel="noreferrer">Code</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Project Three</h3>
-            <p>Short description. Mention stack (e.g., React, Node, etc.).</p>
-            <div class="links">
-              <a href="#" target="_blank" rel="noreferrer">Live</a>
-              <a href="#" target="_blank" rel="noreferrer">Code</a>
-            </div>
-          </article>
+      <section class="container section">
+        <div class="section-head">
+          <h2>Featured Projects</h2>
+          <p class="muted">Click a tile to view the project page.</p>
         </div>
-      </section>
 
-      <section id="about" class="container section">
-        <h2>About</h2>
-        <p>
-          Write 4–6 lines: what you do, what you’re aiming for, and what you enjoy building.
-          Add your core stack (e.g., TypeScript, React, Node, Python…).
-        </p>
-      </section>
+        <div class="tile-grid">
+          <a class="tile" href="projects/personal-01.html" aria-label="Open STOP!">
+            <div class="tile-thumb">
+              <img src="assets/projects/personal/personal-01/thumb.jpg" alt="STOP! thumbnail" loading="lazy" />
+            </div>
+            <div class="tile-body">
+              <h3 class="tile-title">STOP!</h3>
+              <p class="tile-desc">Personal project.</p>
+              <div class="tags">
+                <span class="tag">Videogame</span>
+                <span class="tag">3D Model</span>
+              </div>
+            </div>
+          </a>
 
-      <section id="contact" class="container section">
-        <h2>Contact</h2>
-        <p>If you want to work together, reach me here:</p>
-        <ul class="contact">
-          <li><a href="mailto:you@email.com">you@email.com</a></li>
-          <li><a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noreferrer">LinkedIn</a></li>
-          <li><a href="https://github.com/martiduran5" target="_blank" rel="noreferrer">GitHub</a></li>
-        </ul>
+          <a class="tile" href="projects/personal-02.html" aria-label="Open Old">
+            <div class="tile-thumb">
+              <img src="assets/projects/personal/personal-02/thumb.jpg" alt="Old thumbnail" loading="lazy" />
+            </div>
+            <div class="tile-body">
+              <h3 class="tile-title">Old</h3>
+              <p class="tile-desc">Personal project.</p>
+              <div class="tags">
+                <span class="tag">Rigging</span>
+                <span class="tag">Animation</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="tile" href="projects/academic-01.html" aria-label="Open pepEpep">
+            <div class="tile-thumb">
+              <img src="assets/projects/academic/academic-01/thumb.jpg" alt="pepEpep thumbnail" loading="lazy" />
+            </div>
+            <div class="tile-body">
+              <h3 class="tile-title">pepEpep</h3>
+              <p class="tile-desc">Academic project.</p>
+              <div class="tags">
+                <span class="tag">3D Model</span>
+              </div>
+            </div>
+          </a>
+        </div>
       </section>
     </main>
 
     <footer class="container footer">
       <span>© <span id="year"></span> Martí Duran</span>
       <span class="sep">•</span>
-      <a href="#top">Back to top</a>
+      <a href="contact.html">Contact</a>
     </footer>
-
-    <script src="script.js"></script>
   </body>
 </html>
