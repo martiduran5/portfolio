@@ -2,15 +2,54 @@
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// Mobile menu
+// ===== Mobile menu (with scroll lock + backdrop + ESC close) =====
 const mobileToggle = document.querySelector(".mobile-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
+
+let menuBackdrop = document.querySelector(".mobile-menu-backdrop");
+if (!menuBackdrop) {
+  menuBackdrop = document.createElement("div");
+  menuBackdrop.className = "mobile-menu-backdrop";
+  document.body.appendChild(menuBackdrop);
+}
+
+function openMenu() {
+  if (!mobileToggle || !mobileMenu) return;
+  mobileToggle.setAttribute("aria-expanded", "true");
+  mobileMenu.hidden = false;
+  menuBackdrop.classList.add("open");
+  document.documentElement.classList.add("no-scroll");
+}
+
+function closeMenu() {
+  if (!mobileToggle || !mobileMenu) return;
+  mobileToggle.setAttribute("aria-expanded", "false");
+  mobileMenu.hidden = true;
+  menuBackdrop.classList.remove("open");
+  document.documentElement.classList.remove("no-scroll");
+}
 
 if (mobileToggle && mobileMenu) {
   mobileToggle.addEventListener("click", () => {
     const isOpen = mobileToggle.getAttribute("aria-expanded") === "true";
-    mobileToggle.setAttribute("aria-expanded", String(!isOpen));
-    mobileMenu.hidden = isOpen;
+    if (isOpen) closeMenu();
+    else openMenu();
+  });
+
+  // Close when tapping outside (backdrop)
+  menuBackdrop.addEventListener("click", closeMenu);
+
+  // Close after clicking a menu link
+  mobileMenu.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a) closeMenu();
+  });
+
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const isOpen = mobileToggle.getAttribute("aria-expanded") === "true";
+    if (isOpen) closeMenu();
   });
 }
 
@@ -50,44 +89,41 @@ function setupFilterGroup(groupName) {
         .split(/\s+/)
         .filter(Boolean);
 
-      // If nothing selected (or only "all"), show everything
       const match = selected.length === 0 ? true : selected.some((t) => tags.includes(t));
       tile.style.display = match ? "" : "none";
     });
   }
 
-  // Click handling
   chips.forEach((chip) => {
     chip.addEventListener("click", () => {
       const v = chipValue(chip);
 
       if (v === "all") {
-        // "All" clears everything else
         setAllActiveOnly();
         render();
         return;
       }
 
-      // Toggle this chip
       chip.classList.toggle("active");
 
-      // If any non-all chip is active, remove "All"
-      const anyNonAllActive = chips.some((c) => chipValue(c) !== "all" && c.classList.contains("active"));
+      const anyNonAllActive = chips.some(
+        (c) => chipValue(c) !== "all" && c.classList.contains("active")
+      );
       if (anyNonAllActive) {
         chips.forEach((c) => {
           if (chipValue(c) === "all") c.classList.remove("active");
         });
       }
 
-      // If none are active, fallback to "All"
-      const anyActive = chips.some((c) => c.classList.contains("active") && chipValue(c) !== "all");
+      const anyActive = chips.some(
+        (c) => c.classList.contains("active") && chipValue(c) !== "all"
+      );
       if (!anyActive) setAllActiveOnly();
 
       render();
     });
   });
 
-  // Initial state: All
   setAllActiveOnly();
   render();
 }
@@ -96,16 +132,10 @@ setupFilterGroup("personal");
 setupFilterGroup("academic");
 
 // ===== Lightbox for galleries =====
-//
-// Markup expectations on project pages:
-// - A container with class ".gallery"
-// - Each clickable item has class ".gallery-item" and contains <img>
-// - The .gallery-item has data-full="path/to/full.jpg" (optional; if missing, uses the img src)
 function setupLightbox() {
   const galleries = document.querySelectorAll(".gallery");
   if (!galleries.length) return;
 
-  // Create lightbox once
   const lightbox = document.createElement("div");
   lightbox.className = "lightbox";
   lightbox.innerHTML = `
@@ -138,7 +168,6 @@ function setupLightbox() {
 
     lbImg.src = src;
     lbImg.alt = current.querySelector("img")?.alt || `Image ${index + 1}`;
-
     lbCounter.textContent = `${index + 1} / ${items.length}`;
   }
 
@@ -147,27 +176,26 @@ function setupLightbox() {
     index = startIndex;
 
     lightbox.classList.add("open");
-    document.documentElement.style.overflow = "hidden"; // lock scroll
+    document.documentElement.classList.add("no-scroll"); // lock scroll
     render();
   }
 
   function close() {
     lightbox.classList.remove("open");
-    document.documentElement.style.overflow = "";
+    document.documentElement.classList.remove("no-scroll");
     lbImg.src = "";
   }
 
   function prev() {
-    index = (index - 1 + items.length) % items.length; // wrap-around
+    index = (index - 1 + items.length) % items.length;
     render();
   }
 
   function next() {
-    index = (index + 1) % items.length; // wrap-around
+    index = (index + 1) % items.length;
     render();
   }
 
-  // Wire gallery click events
   galleries.forEach((gallery) => {
     const galleryItems = Array.from(gallery.querySelectorAll(".gallery-item"));
 
@@ -177,7 +205,6 @@ function setupLightbox() {
         openAt(galleryItems, i);
       });
 
-      // Keyboard activation for accessibility (Enter/Space)
       item.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -187,7 +214,6 @@ function setupLightbox() {
     });
   });
 
-  // Controls
   lbPrev.addEventListener("click", (e) => {
     e.stopPropagation();
     prev();
@@ -198,13 +224,11 @@ function setupLightbox() {
     next();
   });
 
-  // Close on backdrop / close button
   lightbox.addEventListener("click", (e) => {
     const target = e.target;
     if (target && target.dataset && target.dataset.lbClose === "true") close();
   });
 
-  // Keyboard navigation
   document.addEventListener("keydown", (e) => {
     if (!lightbox.classList.contains("open")) return;
 
