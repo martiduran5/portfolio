@@ -14,7 +14,10 @@ if (mobileToggle && mobileMenu) {
   });
 }
 
-// Filtering (two independent filter bars: personal + academic)
+// ===== Multi-select filtering (OR logic) =====
+// - Multiple chips can be active at once
+// - Shows tiles that match ANY selected tag
+// - Clicking "All" clears other selections and shows everything
 function setupFilterGroup(groupName) {
   const bar = document.querySelector(`[data-filter-group="${groupName}"]`);
   const grid = document.querySelector(`[data-project-group="${groupName}"]`);
@@ -23,12 +26,23 @@ function setupFilterGroup(groupName) {
   const chips = Array.from(bar.querySelectorAll("[data-filter]"));
   const tiles = Array.from(grid.querySelectorAll("[data-tags]"));
 
-  function setActiveChip(activeValue) {
-    chips.forEach((c) => c.classList.toggle("active", c.dataset.filter === activeValue));
+  function chipValue(chip) {
+    return (chip.dataset.filter || "").toLowerCase();
   }
 
-  function applyFilter(value) {
-    const v = (value || "all").toLowerCase();
+  function getSelectedValues() {
+    return chips
+      .filter((c) => c.classList.contains("active"))
+      .map(chipValue)
+      .filter((v) => v && v !== "all");
+  }
+
+  function setAllActiveOnly() {
+    chips.forEach((c) => c.classList.toggle("active", chipValue(c) === "all"));
+  }
+
+  function render() {
+    const selected = getSelectedValues();
 
     tiles.forEach((tile) => {
       const tags = (tile.dataset.tags || "")
@@ -36,16 +50,46 @@ function setupFilterGroup(groupName) {
         .split(/\s+/)
         .filter(Boolean);
 
-      const match = v === "all" ? true : tags.includes(v);
+      // If nothing selected (or only "all"), show everything
+      const match = selected.length === 0 ? true : selected.some((t) => tags.includes(t));
       tile.style.display = match ? "" : "none";
     });
-
-    setActiveChip(v);
   }
 
-  chips.forEach((chip) => chip.addEventListener("click", () => applyFilter(chip.dataset.filter)));
+  // Click handling
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const v = chipValue(chip);
 
-  applyFilter("all");
+      if (v === "all") {
+        // "All" clears everything else
+        setAllActiveOnly();
+        render();
+        return;
+      }
+
+      // Toggle this chip
+      chip.classList.toggle("active");
+
+      // If any non-all chip is active, remove "All"
+      const anyNonAllActive = chips.some((c) => chipValue(c) !== "all" && c.classList.contains("active"));
+      if (anyNonAllActive) {
+        chips.forEach((c) => {
+          if (chipValue(c) === "all") c.classList.remove("active");
+        });
+      }
+
+      // If none are active, fallback to "All"
+      const anyActive = chips.some((c) => c.classList.contains("active") && chipValue(c) !== "all");
+      if (!anyActive) setAllActiveOnly();
+
+      render();
+    });
+  });
+
+  // Initial state: All
+  setAllActiveOnly();
+  render();
 }
 
 setupFilterGroup("personal");
@@ -133,7 +177,7 @@ function setupLightbox() {
         openAt(galleryItems, i);
       });
 
-      // Optional keyboard activation for accessibility (Enter/Space)
+      // Keyboard activation for accessibility (Enter/Space)
       item.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
