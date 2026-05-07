@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>STOP! — Martí Duran</title>
     <meta name="description" content="Project breakdown by Martí Duran." />
-    <link rel="icon" href="../logo-white.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" href="../logo-black.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="../logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../styles.css" />
     <script defer src="../script.js"></script>
   </head>
 
-  <body>
+  <body class="project-tight">
     <div class="site-header">
       <header class="container header">
         <a class="logo" href="../index.html" aria-label="Go to homepage">Home</a>
 
         <nav class="nav" aria-label="Primary navigation">
-          <a href="../about.html">About Me</a>
           <a href="../projects.html">Projects</a>
+          <a href="../about.html">About Me</a>
           <a href="../contact.html">Contact</a>
         </nav>
         <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
@@ -26,8 +25,8 @@
 
       <div class="mobile-menu" hidden>
         <nav class="mobile-nav" aria-label="Mobile navigation">
-          <a href="../about.html">About Me</a>
           <a href="../projects.html">Projects</a>
+          <a href="../about.html">About Me</a>
           <a href="../contact.html">Contact</a>
         </nav>
       </div>
@@ -40,46 +39,42 @@
         </div>
 
         <h1>STOP!</h1>
-        <p class="lead muted">Template detail page. Replace text and images later.</p>
-
-        <div class="project-meta">
-          <div class="meta-card"><div class="meta-title">Role</div><div class="meta-text">Technical Artist • 3D • Animation</div></div>
-          <div class="meta-card"><div class="meta-title">Tools</div><div class="meta-text">Unreal • Blender • Substance • Python</div></div>
-          <div class="meta-card"><div class="meta-title">Year</div><div class="meta-text">2026</div></div>
-          <div class="meta-card"><div class="meta-title">Links</div><div class="meta-text"><a href="#" target="_blank" rel="noreferrer">Video</a><span class="muted"> • </span><a href="#" target="_blank" rel="noreferrer">Repo</a></div></div>
-        </div>
-      </section>
-
-      <section class="container section">
-        <div class="section-head"><h2>Gallery</h2></div>
-
-        <div class="gallery">
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/personal/personal-01/thumb.jpg">
-            <img src="../assets/projects/personal/personal-01/thumb.jpg" alt="STOP! image 1" loading="lazy" />
+        <div class="project-meta meta-2">
+          <div class="meta-card">
+            <div class="meta-title">Description</div>
+            <div class="meta-text">
+              Low poly axe inspired by road elements. It's composed of a stop sign with rocks attached with screws to the blade
+              and leather straps on the pole.
+            </div>
           </div>
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/personal/personal-01/thumb.jpg">
-            <img src="../assets/projects/personal/personal-01/thumb.jpg" alt="STOP! image 2" loading="lazy" />
-          </div>
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/personal/personal-01/thumb.jpg">
-            <img src="../assets/projects/personal/personal-01/thumb.jpg" alt="STOP! image 3" loading="lazy" />
-          </div>
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/personal/personal-01/thumb.jpg">
-            <img src="../assets/projects/personal/personal-01/thumb.jpg" alt="STOP! image 4" loading="lazy" />
+
+          <div class="meta-card">
+            <div class="meta-title">Tools</div>
+            <div class="meta-text">Blender • Substance Painter</div>
           </div>
         </div>
       </section>
 
       <section class="container section">
-        <div class="panel">
-          <h2>Overview</h2>
-          <p class="muted">Write context: goal, constraints, what you shipped, and what you learned.</p>
-          <h3 class="subhead">Responsibilities</h3>
-          <ul class="muted">
-            <li>Material/shader setup and lookdev</li>
-            <li>Asset creation (modeling/UVs/textures)</li>
-            <li>Rigging/animation integration</li>
-            <li>Optimization (LODs, budgets, profiling)</li>
-          </ul>
+        <div class="section-head">
+          <h2>3D View</h2>
+        </div>
+
+        <div class="sketchfab-wrap">
+          <iframe
+            class="sketchfab"
+            title="STOP"
+            frameborder="0"
+            allowfullscreen
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            xr-spatial-tracking
+            execution-while-out-of-viewport
+            execution-while-not-rendered
+            web-share
+            src="https://sketchfab.com/models/0fe7e92818a84c02964f535228a8a1ee/embed?ui_theme=dark&autostart=1&autospin=0&ui_infos=0"
+          ></iframe>
         </div>
       </section>
     </main>

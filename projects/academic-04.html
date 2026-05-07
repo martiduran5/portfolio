@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" id="top">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temple — Martí Duran</title>
+    <meta name="description" content="Project breakdown by Martí Duran." />
+    <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script defer src="../script.js"></script>
+
+    <style>
+      /* Desktop: 3 images side-by-side */
+      @media (min-width: 900px) {
+        .gallery.gallery-3 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* Make the thumbnails shorter (landscape instead of square) */
+        .gallery.gallery-3 .gallery-item img {
+          aspect-ratio: 16 / 10; /* change to 16/9 if you want even shorter */
+        }
+      }
+    </style>
+
+  <body class="project-tight">
+    <div class="site-header">
+      <header class="container header">
+        <a class="logo" href="../index.html" aria-label="Go to homepage">Home</a>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="../projects.html">Projects</a>
+          <a href="../about.html">About Me</a>
+          <a href="../contact.html">Contact</a>
+        </nav>
+
+        <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
+      </header>
+
+      <div class="mobile-menu" hidden>
+        <nav class="mobile-nav" aria-label="Mobile navigation">
+          <a href="../projects.html">Projects</a>
+          <a href="../about.html">About Me</a>
+          <a href="../contact.html">Contact</a>
+        </nav>
+      </div>
+    </div>
+
+    <main>
+      <section class="container page-hero">
+        <div class="back-row">
+          <a class="back-link" href="../projects.html">← Back to Projects</a>
+        </div>
+
+        <h1>Temple</h1>
+
+        <div class="project-meta meta-2">
+          <div class="meta-card">
+            <div class="meta-title">Description</div>
+            <div class="meta-text">Scenary for a school animation project.</div>
+          </div>
+
+          <div class="meta-card">
+            <div class="meta-title">Tools</div>
+            <div class="meta-text">Blender • Substance Painter • Autodesk Maya</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container section">
+        <div class="section-head"><h2>Gallery</h2></div>
+
+        <div class="gallery gallery-3">
+          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/academic/academic-04/image-01.jpg">
+            <img src="../assets/projects/academic/academic-04/image-01.jpg" alt="Temple image 1" loading="lazy" />
+          </div>
+
+          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/academic/academic-04/image-02.jpg">
+            <img src="../assets/projects/academic/academic-04/image-02.jpg" alt="Temple image 2" loading="lazy" />
+          </div>
+
+          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/academic/academic-04/image-03.jpg">
+            <img src="../assets/projects/academic/academic-04/image-03.jpg" alt="Temple image 3" loading="lazy" />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container footer">
+      <span>© <span id="year"></span> Martí Duran</span>
+      <span class="sep">•</span>
+      <a href="../contact.html">Contact</a>
+    </footer>
+  </body>
+</html>

@@ -5,67 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shenlong — Martí Duran</title>
     <meta name="description" content="Project breakdown by Martí Duran." />
-    <link rel="icon" href="../logo-white.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" href="../logo-black.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="../logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../styles.css" />
     <script defer src="../script.js"></script>
+
+    <style>
+      .viewer-split {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .side-gallery {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 12px;
+        height: 100%;
+        min-height: 0;
+      }
+
+      .sketchfab-wrap {
+        height: 100%;
+        min-height: 0;
+      }
+
+      .sketchfab {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: 0;
+      }
+
+      .media-tile {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        transition: transform 160ms ease, border-color 160ms ease;
+        cursor: zoom-in;
+        position: relative;
+        min-height: 0;
+      }
+
+      .media-tile:hover {
+        transform: translateY(-2px);
+        border-color: rgba(123, 214, 255, 0.45);
+      }
+
+      .media-tile img,
+      .media-tile video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      @media (max-width: 780px) {
+        .viewer-split {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+
+        .side-gallery {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: 1fr;
+          gap: 10px;
+          height: auto;
+        }
+
+        .media-tile {
+          aspect-ratio: 1 / 1;
+        }
+
+        .sketchfab-wrap {
+          height: auto;
+        }
+        .sketchfab {
+          aspect-ratio: 16 / 9;
+          height: auto;
+        }
+      }
+    </style>
   </head>
-  <body>
+
+  <body class="project-tight">
     <div class="site-header">
       <header class="container header">
         <a class="logo" href="../index.html" aria-label="Go to homepage">Home</a>
+
         <nav class="nav" aria-label="Primary navigation">
-          <a href="../about.html">About Me</a><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a>
+          <a href="../projects.html">Projects</a>
+          <a href="../about.html">About Me</a>
+          <a href="../contact.html">Contact</a>
         </nav>
+
         <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
       </header>
+
       <div class="mobile-menu" hidden>
         <nav class="mobile-nav" aria-label="Mobile navigation">
-          <a href="../about.html">About Me</a><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a>
+          <a href="../projects.html">Projects</a>
+          <a href="../about.html">About Me</a>
+          <a href="../contact.html">Contact</a>
         </nav>
       </div>
     </div>
 
     <main>
       <section class="container page-hero">
-        <div class="back-row"><a class="back-link" href="../projects.html">← Back to Projects</a></div>
+        <div class="back-row">
+          <a class="back-link" href="../projects.html">← Back to Projects</a>
+        </div>
+
         <h1>Shenlong</h1>
-        <p class="lead muted">Template detail page. Replace text and images later.</p>
+        <div class="project-meta meta-2">
+          <div class="meta-card">
+            <div class="meta-title">Description</div>
+            <div class="meta-text">Character for a school animation project.</div>
+          </div>
 
-        <div class="project-meta">
-          <div class="meta-card"><div class="meta-title">Role</div><div class="meta-text">Technical Artist • 3D • Animation</div></div>
-          <div class="meta-card"><div class="meta-title">Tools</div><div class="meta-text">Unreal • Blender • Substance • Python</div></div>
-          <div class="meta-card"><div class="meta-title">Year</div><div class="meta-text">2026</div></div>
-          <div class="meta-card"><div class="meta-title">Links</div><div class="meta-text"><a href="#" target="_blank" rel="noreferrer">Video</a><span class="muted"> • </span><a href="#" target="_blank" rel="noreferrer">Repo</a></div></div>
-        </div>
-      </section>
-
-      <section class="container section">
-        <div class="section-head"><h2>Gallery</h2></div>
-        <div class="gallery">
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/academic/academic-02/thumb.jpg">
-            <img src="../assets/projects/academic/academic-02/thumb.jpg" alt="Shenlong image 1" loading="lazy" />
-          </div>
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/academic/academic-02/thumb.jpg">
-            <img src="../assets/projects/academic/academic-02/thumb.jpg" alt="Shenlong image 2" loading="lazy" />
-          </div>
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/academic/academic-02/thumb.jpg">
-            <img src="../assets/projects/academic/academic-02/thumb.jpg" alt="Shenlong image 3" loading="lazy" />
-          </div>
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/academic/academic-02/thumb.jpg">
-            <img src="../assets/projects/academic/academic-02/thumb.jpg" alt="Shenlong image 4" loading="lazy" />
+          <div class="meta-card">
+            <div class="meta-title">Tools</div>
+            <div class="meta-text">Blender • Substance Painter • Autodesk Maya</div>
           </div>
         </div>
       </section>
 
       <section class="container section">
-        <div class="panel">
-          <h2>Overview</h2>
-          <p class="muted">Write context: goal, constraints, what you shipped, and what you learned.</p>
-          <h3 class="subhead">Responsibilities</h3>
-          <ul class="muted">
-            <li>Material/shader setup and lookdev</li><li>Asset creation (modeling/UVs/textures)</li><li>Rigging/animation integration</li><li>Optimization (LODs, budgets, profiling)</li>
-          </ul>
+        <div class="section-head">
+          <h2>3D View</h2>
+        </div>
+
+        <div class="viewer-split">
+          <div class="sketchfab-wrap">
+            <iframe
+              class="sketchfab"
+              title="Shenlong"
+              frameborder="0"
+              allowfullscreen
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              xr-spatial-tracking
+              execution-while-out-of-viewport
+              execution-while-not-rendered
+              web-share
+              src="https://sketchfab.com/models/53a87bc09dc041e180d9253f433d9368/embed?ui_theme=dark&autostart=1&autospin=0&ui_infos=0"
+            ></iframe>
+          </div>
+
+          <div class="side-gallery" aria-label="Shenlong media">
+            <div class="media-tile gallery-item" role="button" tabindex="0" data-full="../assets/projects/academic/academic-02/clip-01.mp4">
+              <video src="../assets/projects/academic/academic-02/clip-01.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+
+            <div class="media-tile gallery-item" role="button" tabindex="0" data-full="../assets/projects/academic/academic-02/image-02.jpg">
+              <img src="../assets/projects/academic/academic-02/image-02.jpg" alt="Shenlong image 2" loading="lazy" />
+            </div>
+          </div>
         </div>
       </section>
     </main>

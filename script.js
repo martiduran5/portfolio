@@ -36,16 +36,13 @@ if (mobileToggle && mobileMenu) {
     else openMenu();
   });
 
-  // Close when tapping outside (backdrop)
   menuBackdrop.addEventListener("click", closeMenu);
 
-  // Close after clicking a menu link
   mobileMenu.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (a) closeMenu();
   });
 
-  // Close on Escape
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     const isOpen = mobileToggle.getAttribute("aria-expanded") === "true";
@@ -54,9 +51,6 @@ if (mobileToggle && mobileMenu) {
 }
 
 // ===== Multi-select filtering (OR logic) =====
-// - Multiple chips can be active at once
-// - Shows tiles that match ANY selected tag
-// - Clicking "All" clears other selections and shows everything
 function setupFilterGroup(groupName) {
   const bar = document.querySelector(`[data-filter-group="${groupName}"]`);
   const grid = document.querySelector(`[data-project-group="${groupName}"]`);
@@ -84,11 +78,7 @@ function setupFilterGroup(groupName) {
     const selected = getSelectedValues();
 
     tiles.forEach((tile) => {
-      const tags = (tile.dataset.tags || "")
-        .toLowerCase()
-        .split(/\s+/)
-        .filter(Boolean);
-
+      const tags = (tile.dataset.tags || "").toLowerCase().split(/\s+/).filter(Boolean);
       const match = selected.length === 0 ? true : selected.some((t) => tags.includes(t));
       tile.style.display = match ? "" : "none";
     });
@@ -106,18 +96,14 @@ function setupFilterGroup(groupName) {
 
       chip.classList.toggle("active");
 
-      const anyNonAllActive = chips.some(
-        (c) => chipValue(c) !== "all" && c.classList.contains("active")
-      );
+      const anyNonAllActive = chips.some((c) => chipValue(c) !== "all" && c.classList.contains("active"));
       if (anyNonAllActive) {
         chips.forEach((c) => {
           if (chipValue(c) === "all") c.classList.remove("active");
         });
       }
 
-      const anyActive = chips.some(
-        (c) => c.classList.contains("active") && chipValue(c) !== "all"
-      );
+      const anyActive = chips.some((c) => c.classList.contains("active") && chipValue(c) !== "all");
       if (!anyActive) setAllActiveOnly();
 
       render();
@@ -131,86 +117,124 @@ function setupFilterGroup(groupName) {
 setupFilterGroup("personal");
 setupFilterGroup("academic");
 
-// ===== Lightbox for galleries =====
+// ===== Lightbox for galleries (images + videos) =====
 function setupLightbox() {
-  const galleries = document.querySelectorAll(".gallery");
-  if (!galleries.length) return;
+  const items = Array.from(document.querySelectorAll(".gallery-item"));
+  if (!items.length) return;
 
   const lightbox = document.createElement("div");
   lightbox.className = "lightbox";
   lightbox.innerHTML = `
     <div class="lightbox-backdrop" data-lb-close="true"></div>
-    <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Media viewer">
       <button class="lightbox-close" type="button" aria-label="Close (Esc)" data-lb-close="true">Close</button>
-      <button class="lightbox-btn lightbox-prev" type="button" aria-label="Previous image (Left arrow)">‹</button>
+      <button class="lightbox-btn lightbox-prev" type="button" aria-label="Previous (Left arrow)">‹</button>
+
       <img class="lightbox-img" alt="" />
-      <button class="lightbox-btn lightbox-next" type="button" aria-label="Next image (Right arrow)">›</button>
+      <video class="lightbox-video" controls playsinline style="display:none;"></video>
+
+      <button class="lightbox-btn lightbox-next" type="button" aria-label="Next (Right arrow)">›</button>
       <div class="lightbox-counter" aria-live="polite"></div>
     </div>
   `;
   document.body.appendChild(lightbox);
 
   const lbImg = lightbox.querySelector(".lightbox-img");
+  const lbVideo = lightbox.querySelector(".lightbox-video");
   const lbPrev = lightbox.querySelector(".lightbox-prev");
   const lbNext = lightbox.querySelector(".lightbox-next");
   const lbCounter = lightbox.querySelector(".lightbox-counter");
 
-  let items = [];
+  let groupItems = [];
   let index = 0;
 
   function getFullSrc(item) {
     return item.dataset.full || item.querySelector("img")?.getAttribute("src") || "";
   }
 
-  function render() {
-    const current = items[index];
-    const src = getFullSrc(current);
-
-    lbImg.src = src;
-    lbImg.alt = current.querySelector("img")?.alt || `Image ${index + 1}`;
-    lbCounter.textContent = `${index + 1} / ${items.length}`;
+  function isVideoSrc(src) {
+    return /\.(mp4|webm|ogg)(\?.*)?$/i.test(src);
   }
 
-  function openAt(newItems, startIndex) {
-    items = newItems;
+  function clearMedia() {
+    lbVideo.pause();
+    lbVideo.removeAttribute("src");
+    lbVideo.load();
+
+    lbImg.src = "";
+    lbVideo.style.display = "none";
+    lbImg.style.display = "block";
+  }
+
+  function render() {
+    const current = groupItems[index];
+    const src = getFullSrc(current);
+
+    const altFromImg = current.querySelector("img")?.alt;
+    const alt = altFromImg || `Item ${index + 1}`;
+
+    lbCounter.textContent = `${index + 1} / ${groupItems.length}`;
+
+    clearMedia();
+    if (!src) return;
+
+    if (isVideoSrc(src)) {
+      lbImg.style.display = "none";
+      lbVideo.style.display = "block";
+      lbVideo.src = src;
+    } else {
+      lbImg.style.display = "block";
+      lbImg.src = src;
+      lbImg.alt = alt;
+    }
+  }
+
+  function openAt(newGroupItems, startIndex) {
+    groupItems = newGroupItems;
     index = startIndex;
 
     lightbox.classList.add("open");
-    document.documentElement.classList.add("no-scroll"); // lock scroll
+    document.documentElement.classList.add("no-scroll");
     render();
   }
 
   function close() {
     lightbox.classList.remove("open");
     document.documentElement.classList.remove("no-scroll");
-    lbImg.src = "";
+    clearMedia();
   }
 
   function prev() {
-    index = (index - 1 + items.length) % items.length;
+    index = (index - 1 + groupItems.length) % groupItems.length;
     render();
   }
 
   function next() {
-    index = (index + 1) % items.length;
+    index = (index + 1) % groupItems.length;
     render();
   }
 
-  galleries.forEach((gallery) => {
-    const galleryItems = Array.from(gallery.querySelectorAll(".gallery-item"));
+  function getGroupItemsFor(item) {
+    const gallery = item.closest(".gallery");
+    if (gallery) return Array.from(gallery.querySelectorAll(".gallery-item"));
 
-    galleryItems.forEach((item, i) => {
-      item.addEventListener("click", (e) => {
+    const section = item.closest("section") || document;
+    return Array.from(section.querySelectorAll(".gallery-item"));
+  }
+
+  items.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const g = getGroupItemsFor(item);
+      openAt(g, Math.max(0, g.indexOf(item)));
+    });
+
+    item.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        openAt(galleryItems, i);
-      });
-
-      item.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openAt(galleryItems, i);
-        }
-      });
+        const g = getGroupItemsFor(item);
+        openAt(g, Math.max(0, g.indexOf(item)));
+      }
     });
   });
 

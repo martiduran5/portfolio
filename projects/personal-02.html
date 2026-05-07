@@ -3,69 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Old — Martí Duran</title>
+    <title>PROJECT_TITLE — Martí Duran</title>
     <meta name="description" content="Project breakdown by Martí Duran." />
-    <link rel="icon" href="../logo-white.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" href="../logo-black.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="../logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="../styles.css" />
     <script defer src="../script.js"></script>
   </head>
-  <body>
+
+  <body class="project-tight">
     <div class="site-header">
       <header class="container header">
         <a class="logo" href="../index.html" aria-label="Go to homepage">Home</a>
+
         <nav class="nav" aria-label="Primary navigation">
-          <a href="../about.html">About Me</a><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a>
+          <a href="../projects.html">Projects</a>
+          <a href="../about.html">About Me</a>
+          <a href="../contact.html">Contact</a>
         </nav>
+
         <button class="mobile-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
       </header>
+
       <div class="mobile-menu" hidden>
         <nav class="mobile-nav" aria-label="Mobile navigation">
-          <a href="../about.html">About Me</a><a href="../projects.html">Projects</a><a href="../contact.html">Contact</a>
+          <a href="../projects.html">Projects</a>
+          <a href="../about.html">About Me</a>
+          <a href="../contact.html">Contact</a>
         </nav>
       </div>
     </div>
 
     <main>
       <section class="container page-hero">
-        <div class="back-row"><a class="back-link" href="../projects.html">← Back to Projects</a></div>
-        <h1>Old</h1>
-        <p class="lead muted">Template detail page. Replace text and images later.</p>
+        <div class="back-row">
+          <a class="back-link" href="../projects.html">← Back to Projects</a>
+        </div>
 
-        <div class="project-meta">
-          <div class="meta-card"><div class="meta-title">Role</div><div class="meta-text">Technical Artist • 3D • Animation</div></div>
-          <div class="meta-card"><div class="meta-title">Tools</div><div class="meta-text">Unreal • Blender • Substance • Python</div></div>
-          <div class="meta-card"><div class="meta-title">Year</div><div class="meta-text">2026</div></div>
-          <div class="meta-card"><div class="meta-title">Links</div><div class="meta-text"><a href="#" target="_blank" rel="noreferrer">Video</a><span class="muted"> • </span><a href="#" target="_blank" rel="noreferrer">Repo</a></div></div>
+        <h1>PROJECT_TITLE</h1>
+        <p class="lead muted">Short one-line description of the videogame project.</p>
+
+        <div class="project-meta meta-2">
+          <div class="meta-card">
+            <div class="meta-title">Tools</div>
+            <div class="meta-text">Engine • DCC • Other</div>
+          </div>
+
+          <div class="meta-card">
+            <div class="meta-title">Year</div>
+            <div class="meta-text">2026</div>
+          </div>
         </div>
       </section>
 
       <section class="container section">
         <div class="section-head"><h2>Gallery</h2></div>
-        <div class="gallery">
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/personal/personal-02/thumb.jpg">
-            <img src="../assets/projects/personal/personal-02/thumb.jpg" alt="Old image 1" loading="lazy" />
-          </div>
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/personal/personal-02/thumb.jpg">
-            <img src="../assets/projects/personal/personal-02/thumb.jpg" alt="Old image 2" loading="lazy" />
-          </div>
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/personal/personal-02/thumb.jpg">
-            <img src="../assets/projects/personal/personal-02/thumb.jpg" alt="Old image 3" loading="lazy" />
-          </div>
-          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/personal/personal-02/thumb.jpg">
-            <img src="../assets/projects/personal/personal-02/thumb.jpg" alt="Old image 4" loading="lazy" />
-          </div>
-        </div>
-      </section>
 
-      <section class="container section">
-        <div class="panel">
-          <h2>Overview</h2>
-          <p class="muted">Write context: goal, constraints, what you shipped, and what you learned.</p>
-          <h3 class="subhead">Responsibilities</h3>
-          <ul class="muted">
-            <li>Material/shader setup and lookdev</li><li>Asset creation (modeling/UVs/textures)</li><li>Rigging/animation integration</li><li>Optimization (LODs, budgets, profiling)</li>
-          </ul>
+        <div class="gallery">
+          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/REPLACE_PATH/image-01.jpg">
+            <img src="../assets/projects/REPLACE_PATH/image-01.jpg" alt="PROJECT_TITLE image 1" loading="lazy" />
+          </div>
+
+          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/REPLACE_PATH/image-02.jpg">
+            <img src="../assets/projects/REPLACE_PATH/image-02.jpg" alt="PROJECT_TITLE image 2" loading="lazy" />
+          </div>
+
+          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/REPLACE_PATH/image-03.jpg">
+            <img src="../assets/projects/REPLACE_PATH/image-03.jpg" alt="PROJECT_TITLE image 3" loading="lazy" />
+          </div>
+
+          <div class="gallery-item" role="button" tabindex="0" data-full="../assets/projects/REPLACE_PATH/image-04.jpg">
+            <img src="../assets/projects/REPLACE_PATH/image-04.jpg" alt="PROJECT_TITLE image 4" loading="lazy" />
+          </div>
         </div>
       </section>
     </main>

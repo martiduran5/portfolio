@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects — Martí Duran</title>
     <meta name="description" content="Projects by Martí Duran." />
-    <link rel="icon" href="logo-white.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" href="logo-black.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
   </head>
 
-  <body>
+  <body class="projects-tight">
     <div class="site-header">
       <header class="container header">
         <a class="logo" href="index.html" aria-label="Go to homepage">Home</a>
 
         <nav class="nav" aria-label="Primary navigation">
-          <a href="about.html">About Me</a>
           <a class="active" href="projects.html" aria-current="page">Projects</a>
+          <a href="about.html">About Me</a>
           <a href="contact.html">Contact</a>
         </nav>
 
@@ -27,19 +26,14 @@
 
       <div class="mobile-menu" hidden>
         <nav class="mobile-nav" aria-label="Mobile navigation">
-          <a href="about.html">About Me</a>
           <a href="projects.html">Projects</a>
+          <a href="about.html">About Me</a>
           <a href="contact.html">Contact</a>
         </nav>
       </div>
     </div>
 
     <main>
-      <section class="container page-hero">
-        <h1>Projects</h1>
-        <p class="lead muted">Use the filters to browse by category. Click a project to see the detail page.</p>
-      </section>
-
       <section class="container section">
         <div class="section-head">
           <h1>Personal Projects</h1>
@@ -47,43 +41,16 @@
 
         <div class="filter-row" data-filter-group="personal">
           <span class="filter-chip active" data-filter="all">All</span>
-          <span class="filter-chip" data-filter="rigging">Rigging</span>
-          <span class="filter-chip" data-filter="animation">Animation</span>
           <span class="filter-chip" data-filter="3d-model">3D Model</span>
-          <span class="filter-chip" data-filter="videogame">Videogame</span>
         </div>
 
         <div class="tile-grid" data-project-group="personal">
-          <a class="tile" href="projects/personal-01.html" data-tags="videogame 3d-model" aria-label="Open STOP!">
+          <a class="tile" href="projects/personal-01.html" data-tags="videogame 3d-model" aria-label="Open STOP">
             <div class="tile-thumb">
               <img src="assets/projects/personal/personal-01/thumb.jpg" alt="STOP! thumbnail" loading="lazy" />
             </div>
             <div class="tile-body">
               <h3 class="tile-title">STOP!</h3>
-              <div class="tags">
-                <span class="tag">Videogame</span><span class="tag">3D Model</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="tile" href="projects/personal-02.html" data-tags="rigging animation" aria-label="Open Old">
-            <div class="tile-thumb">
-              <img src="assets/projects/personal/personal-02/thumb.jpg" alt="Old thumbnail" loading="lazy" />
-            </div>
-            <div class="tile-body">
-              <h3 class="tile-title">Old</h3>
-              <div class="tags">
-                <span class="tag">Rigging</span><span class="tag">Animation</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="tile" href="projects/personal-03.html" data-tags="3d-model" aria-label="Open Street">
-            <div class="tile-thumb">
-              <img src="assets/projects/personal/personal-03/thumb.jpg" alt="Street thumbnail" loading="lazy" />
-            </div>
-            <div class="tile-body">
-              <h3 class="tile-title">Street</h3>
               <div class="tags">
                 <span class="tag">3D Model</span>
               </div>
@@ -100,35 +67,61 @@
         <div class="filter-row" data-filter-group="academic">
           <span class="filter-chip active" data-filter="all">All</span>
           <span class="filter-chip" data-filter="rigging">Rigging</span>
-          <span class="filter-chip" data-filter="animation">Animation</span>
           <span class="filter-chip" data-filter="3d-model">3D Model</span>
+          <span class="filter-chip" data-filter="render">Render</span>
           <span class="filter-chip" data-filter="videogame">Videogame</span>
         </div>
 
         <div class="tile-grid" data-project-group="academic">
-          <a class="tile" href="projects/academic-01.html" data-tags="animation" aria-label="Open pepEpep">
+          <a class="tile" href="projects/academic-01.html" data-tags="videogame" aria-label="Open pepEpep">
             <div class="tile-thumb">
               <img src="assets/projects/academic/academic-01/thumb.jpg" alt="pepEpep thumbnail" loading="lazy" />
             </div>
             <div class="tile-body">
               <h3 class="tile-title">pepEpep</h3>
               <div class="tags">
-                <span class="tag">Animation</span>
+                <span class="tag">Videogame</span>
               </div>
             </div>
           </a>
 
-          <a class="tile" href="projects/academic-02.html" data-tags="videogame rigging" aria-label="Open Shenlong">
+          <a class="tile" href="projects/academic-02.html" data-tags="3d-model rigging" aria-label="Open Shenlong">
             <div class="tile-thumb">
               <img src="assets/projects/academic/academic-02/thumb.jpg" alt="Shenlong thumbnail" loading="lazy" />
             </div>
             <div class="tile-body">
               <h3 class="tile-title">Shenlong</h3>
               <div class="tags">
-                <span class="tag">Videogame</span><span class="tag">Rigging</span>
+                <span class="tag">3D Model</span><span class="tag">Rigging</span>
               </div>
             </div>
           </a>
+
+          <a class="tile" href="projects/academic-03.html" data-tags="render 3d-model" aria-label="Open Town">
+            <div class="tile-thumb">
+              <img src="assets/projects/academic/academic-03/thumb.jpg" alt="Old Chinese Town thumbnail" loading="lazy" />
+            </div>
+            <div class="tile-body">
+              <h3 class="tile-title">Old Chinese Town</h3>
+              <div class="tags">
+                <span class="tag">Render</span><span class="tag">3D Model</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="tile" href="projects/academic-04.html" data-tags="render 3d-model" aria-label="Open Temple">
+            <div class="tile-thumb">
+              <img src="assets/projects/academic/academic-04/thumb.jpg" alt="Temple thumbnail" loading="lazy" />
+            </div>
+            <div class="tile-body">
+              <h3 class="tile-title">Temple</h3>
+              <div class="tags">
+                <span class="tag">Render</span><span class="tag">3D Model</span>
+              </div>
+            </div>
+          </a>
+
+
         </div>
       </section>
     </main>

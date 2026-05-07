@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home — Martí Duran</title>
     <meta name="description" content="Portfolio of Martí Duran — Technical Artist, 3D Artist and Animator." />
-    <link rel="icon" href="logo-white.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" href="logo-black.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
   </head>
@@ -17,8 +16,8 @@
         <a class="logo" href="index.html" aria-label="Go to homepage">Home</a>
 
         <nav class="nav" aria-label="Primary navigation">
-          <a href="about.html">About Me</a>
           <a href="projects.html">Projects</a>
+          <a href="about.html">About Me</a>
           <a href="contact.html">Contact</a>
         </nav>
 
@@ -27,8 +26,8 @@
 
       <div class="mobile-menu" hidden>
         <nav class="mobile-nav" aria-label="Mobile navigation">
-          <a href="about.html">About Me</a>
           <a href="projects.html">Projects</a>
+          <a href="about.html">About Me</a>
           <a href="contact.html">Contact</a>
         </nav>
       </div>
@@ -38,15 +37,11 @@
       <section class="container page-hero">
         <h1>Martí Duran Cuenca</h1>
         <p class="muted">Technical Artist • 3D Artist • Animator</p>
-        <p class="lead">
-          I'm Martí Duran. I build art and tech that meet in the middle: real-time pipelines, shaders, rigs, animation, and production-ready assets.
-        </p>
       </section>
 
       <section class="container section">
         <div class="section-head">
           <h2>Featured Projects</h2>
-          <p class="muted">Click a tile to view the project page.</p>
         </div>
 
         <div class="tile-grid">
@@ -57,21 +52,20 @@
             <div class="tile-body">
               <h3 class="tile-title">STOP!</h3>
               <div class="tags">
-                <span class="tag">Videogame</span>
                 <span class="tag">3D Model</span>
               </div>
             </div>
           </a>
 
-          <a class="tile" href="projects/personal-02.html" aria-label="Open Old">
+          <a class="tile" href="projects/academic-02.html" aria-label="Open Shenlong">
             <div class="tile-thumb">
-              <img src="assets/projects/personal/personal-02/thumb.jpg" alt="Old thumbnail" loading="lazy" />
+              <img src="assets/projects/academic/academic-02/thumb.jpg" alt="Shenlong thumbnail" loading="lazy" />
             </div>
             <div class="tile-body">
-              <h3 class="tile-title">Old</h3>
+              <h3 class="tile-title">Shenlong</h3>
               <div class="tags">
+                <span class="tag">3D Model</span>
                 <span class="tag">Rigging</span>
-                <span class="tag">Animation</span>
               </div>
             </div>
           </a>
@@ -83,10 +77,14 @@
             <div class="tile-body">
               <h3 class="tile-title">pepEpep</h3>
               <div class="tags">
-                <span class="tag">3D Model</span>
+                <span class="tag">Videogame</span>
               </div>
             </div>
           </a>
+        </div>
+
+        <div class="cta">
+          <a class="button" href="projects.html" aria-label="View more projects">More projects →</a>
         </div>
       </section>
     </main>
