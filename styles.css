@@ -1,5 +1,5 @@
 :root {
-  /* ===== Theme tokens (Dark default) ===== */
+  /* ===== Theme tokens ===== */
   color-scheme: dark;
 
   --bg0: #070a12;
@@ -12,8 +12,8 @@
   --text: rgba(245, 248, 255, 0.92);
   --muted: rgba(205, 215, 240, 0.72);
 
-  --brand: #7bd6ff;      /* icy cyan */
-  --brand-2: #a58bff;    /* cool violet accent */
+  --brand: #7bd6ff; /* icy cyan */
+  --brand-2: #a58bff; /* cool violet accent */
   --border: rgba(160, 190, 255, 0.16);
 
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
@@ -28,10 +28,9 @@
   --hero-y: 34px;
   --page-hero-y: 24px;
 
-  --stack: 16px;         /* default vertical rhythm */
-  --stack-tight: 10px;   /* tightened rhythm for specific pages */
+  --stack: 16px; /* default vertical rhythm */
+  --stack-tight: 10px; /* tightened rhythm for specific pages */
 }
-
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -52,7 +51,6 @@ body {
   line-height: 1.55;
   color: var(--text);
 
-  /* Artsy cold background: layered aurora + grain-ish */
   background:
     radial-gradient(900px 700px at 12% 8%, color-mix(in srgb, var(--brand) 18%, transparent), transparent 55%),
     radial-gradient(850px 650px at 88% 16%, color-mix(in srgb, var(--brand-2) 16%, transparent), transparent 60%),
@@ -70,7 +68,7 @@ a { color: inherit; text-decoration: none; }
 .muted { color: var(--muted); }
 .tiny { font-size: 0.9rem; }
 
-/* ===== Header (colder glass) ===== */
+/* ===== Header ===== */
 .site-header {
   position: sticky;
   top: 0;
@@ -91,6 +89,9 @@ a { color: inherit; text-decoration: none; }
   justify-content: space-between;
   align-items: center;
   padding: 14px 0;
+
+  /* NEW: keep header height stable (prevents iOS jump when menu opens) */
+  min-height: 56px;
 }
 
 .logo {
@@ -124,7 +125,6 @@ a { color: inherit; text-decoration: none; }
   color: var(--text);
 }
 
-/* Active page: brighter text only (no box) */
 .nav a.active {
   color: color-mix(in srgb, var(--text) 100%, white 0%);
   opacity: 1;
@@ -132,7 +132,7 @@ a { color: inherit; text-decoration: none; }
   border-color: transparent;
 }
 
-/* Mobile menu */
+/* ===== Mobile menu ===== */
 .mobile-toggle {
   display: none;
   padding: 10px 12px;
@@ -146,7 +146,14 @@ a { color: inherit; text-decoration: none; }
   background: color-mix(in srgb, var(--brand) 10%, var(--panel));
 }
 
+/* NEW: overlay menu so it doesn't push content down (prevents scroll jump on iPhone) */
 .mobile-menu {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: calc(env(safe-area-inset-top, 0px) + 56px); /* header height + iOS safe area */
+  z-index: 35;
+
   background: color-mix(in srgb, var(--bg0) 85%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
@@ -197,17 +204,14 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
 }
 
-/* ===== Tight spacing targets requested ===== */
-/* About: reduce lead->bio, bio->toolset */
+/* Tight spacing */
 .about-tight .page-hero { padding-bottom: 6px; }
 .about-tight .section { padding: var(--section-y-tight) 0; }
 
-/* Projects: reduce lead->Personal Projects and Academic header->tiles above it */
 .projects-tight .page-hero { padding-bottom: 6px; }
 .projects-tight .section { padding: var(--section-y-tight) 0; }
 .projects-tight .section-head { margin-bottom: 10px; }
 
-/* Project detail pages: reduce meta->gallery header, gallery->overview */
 .project-tight .page-hero { padding-bottom: 10px; }
 .project-tight .section { padding: var(--section-y-tight) 0; }
 .project-tight .section-head { margin-bottom: 10px; }
@@ -345,9 +349,10 @@ a { color: inherit; text-decoration: none; }
 }
 
 .tile-thumb { position: relative; background: rgba(255, 255, 255, 0.02); }
-.tile-thumb::after {
-  content: none;
-}
+
+/* (keep disabled for now — you can paste your palette “glass line” version here if you want) */
+.tile-thumb::after { content: none; }
+
 .tile-thumb img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -462,6 +467,12 @@ a { color: inherit; text-decoration: none; }
   gap: 12px;
   margin-top: 12px;
 }
+
+/* NEW: 1 per row on iPhone/small screens */
+@media (max-width: 520px) {
+  .link-grid { grid-template-columns: 1fr; }
+}
+
 .link-card {
   border: 1px solid var(--border);
   background: color-mix(in srgb, var(--panel) 88%, transparent);
